@@ -1,32 +1,40 @@
 <template>
   <div id="cover-container">
-    <div class="cover" @click="openPage('https://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOTRiWFF2YjNCbGNtRjBMMmRsZEU5d1pYSmhkRXhwYzNSRGVpNWtidz09Jm9wPXl5dGN6Y2Q=')">
-      <span class=" cover_title">营业厅服务</span>
-      <img src="../assets/bizhall_1.jpg" class="cover_img_top">
-      <span class="cover_desc">可通过筛选发现附近营业厅及查询营业厅相关信息</span>
-    </div>
-
-    <span class="line"></span>
-
-    <div class="cover" @click="openPage('http://im.189.cn/weixinopen/outserver/oauth/getOpenid?url=aHR0cHM6Ly9pbS4xODkuY24veG10L3BhZ2VPcGVuTG9nL3JlbGF5LmRvP3VybD1hSFIwY0RvdkwybHRMakU0T1M1amJpOXBiVmQ0VUdGamEyRm5aWE12Y0dGamEyRm5aWE12YjNCbFlYSjBMbVJ2Jm9wPXl5dHl5Y2Q=')">
-      <img src="../assets/bizhall_2.jpg" class="cover_img_other">
-      <span class="cover_desc">预约营业厅办理业务及时查看排队情况，<br>使用前确认已经打开授权微信获取定位功能</span>
-    </div>
+    <template v-for="(cover,index) in coverList">
+      <div :key="index" @click="openPage(cover.url)" class="cover">
+        <template v-if="index === 0">
+          <span class="cover_title">{{cover.title}}</span>
+          <img v-bind:src="cover.banner" class="cover_img_top">
+        </template>
+        <template v-else>
+          <img v-bind:src="cover.banner" class="cover_img_other">
+        </template>
+        <span class="cover_desc" v-html="cover.desc"></span>
+      </div>
+      <span v-if="index!=coverList.length-1" :key="index" class="line"></span>
+    </template>
   </div>
 </template>
 
 <script>
+import data from '../config/data.js'
+
 export default {
   name: 'Cover',
   methods: {
     openPage: function (url) {
       window.location.href= url;
     }
-  }
+  },
+  data () {
+    return {
+      coverList: data.coverList
+    }
+  },
 }
 </script>
 
-<style>
+<style lang="less">
 .cover {
   padding: 15px;
 }
