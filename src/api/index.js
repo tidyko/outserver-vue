@@ -6,14 +6,18 @@
  * description: 对axios进行了简单的封装。针对不同请求格式进行了相应的转换。暂时还没有添加过滤器，考虑后面逐渐完善，目的是让大家减少代码书写和不同不服务之间的灵活转变。这里我们将main.js中使用挂载到Vue.prototype原型链下面使用。
  * main.js
  * ----------------------
+ * import Vue from 'vue'
  * import api from './api/index.js'
+ * 或
+ * import Vue from 'vue'
+ * import api from '@/api/index.js'
  * Vue.prototype.$http = api;
  * ----------------------
  * 组件中使用方法(以post为例):
  * this.$http.post(url,params,response=>{},error=>{});
  * 使用注意：
  *  - 传参格式：
- *    - url: {type: json|formData|multipart, baseUrl: "http://api.youcdn.com/", api: '/user/userLogin.html'}
+ *    - url: {type: 'json|formData|multipart', baseUrl: 'http://api.youcdn.com/', api: '/user/userLogin.html'}
  *    - params: object | null 
  *    - response: success callback
  *    - error: catch or error callback
@@ -26,13 +30,15 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 
 // 自定义判断元素类型JS
-function toType (obj) {
+function toType(obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
 // 参数过滤函数
-function filterNull (o) {
+function filterNull(o) {
   for (var key in o) {
-    if (o[key] === null) { delete o[key] }
+    if (o[key] === null) {
+      delete o[key]
+    }
     if (toType(o[key]) === 'string') {
       o[key] = o[key].trim()
     } else if (toType(o[key]) === 'object') {
@@ -44,7 +50,7 @@ function filterNull (o) {
   return o
 }
 
-function apiAxios (method, url, params, success, failure) {
+function apiAxios(method, url, params, success, failure) {
   // 根据URL地址对象确定使用什么方式请求
   if (url.type === 'json') {
     if (params) {
@@ -63,7 +69,13 @@ function apiAxios (method, url, params, success, failure) {
   axios({
     method: method,
     url: url.api,
-    headers: url.type === 'json' ? { 'Content-Type': 'application/json; charset=UTF-8' } : url.type === 'formData' ? { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' } : { 'Content-Type': 'multipart/form-data; charset=UTF-8' },
+    headers: url.type === 'json' ? {
+      'Content-Type': 'application/json; charset=UTF-8'
+    } : url.type === 'formData' ? {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    } : {
+      'Content-Type': 'multipart/form-data; charset=UTF-8'
+    },
     data: method === 'POST' || method === 'PUT' ? params : null,
     dataType: 'json',
     params: method === 'GET' || method === 'DELETE' ? params : null,
