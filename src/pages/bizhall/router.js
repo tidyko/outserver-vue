@@ -7,7 +7,7 @@ Vue.use(Router)
 const router = new Router({
   base: process.env.BASE_URL,
   routes: [{
-    //http://localhost:8080/weixinopen/outserver/html/flow/?cityId=43
+    //http://localhost:8080/weixinopen/outserver/html/bizhall/
     path: '',
     name: 'index',
     component: Index
