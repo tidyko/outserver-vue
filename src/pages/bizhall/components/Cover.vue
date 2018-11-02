@@ -17,20 +17,16 @@
 </template>
 
 <script>
-import data from '../config/data.js'
-
 export default {
   name: 'Cover',
+  props: {
+    coverList: Array
+  },
   methods: {
     openPage: function (url) {
       window.location.href= url;
     }
-  },
-  data () {
-    return {
-      coverList: data.coverList
-    }
-  },
+  }
 }
 </script>
 
