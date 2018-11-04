@@ -1,19 +1,25 @@
 <template>
   <div id="cover-container">
-    <template v-for="cityCover in coverList.allCoverList">
-      <template v-for="(cover,cityCoverindex) in cityCover.coverList" v-if="cityCover.cityId == cityId">
-        <div :key="cityCoverindex" @click="openPage(cover.url)" class="cover">
-          <template v-if="cityCoverindex === 0">
-            <span class="cover_theme">{{coverList.theme}}</span>
-            <img v-bind:src="cover.banner" class="cover_img_top">
-          </template>
-          <template v-else>
-            <img v-bind:src="cover.banner" class="cover_img_other">
-          </template>
-          <span class="cover_title">{{cover.title}}</span><br>
-          <span class="cover_desc" v-html="cover.desc"></span>
-        </div>
-        <span v-if="index!=cityCover.coverList.length-1" :key="cityCoverindex" class="line"></span>
+
+    <template v-if="banner !=null && banner.length != 0">
+      <img v-bind:src="banner.banner" id="cover_banner">
+    </template>
+    <template v-else>
+      <img v-bind:src="defaultBanner" id="cover_banner">
+    </template>
+
+    <template v-if="cityCover !=null && cityCover.coverList.length != 0">
+      <template v-for="(cover,coverIndex) in cityCover.coverList">
+        <a v-bind:href="cover.url" :key="coverIndex">
+          <img v-bind:src="cover.icon" class="imgLeft2">{{cover.title}}<img src="../assets/arrow.png" class="imgRight">
+        </a>
+      </template>
+    </template>
+    <template v-else>
+      <template v-for="(defaultCover,defaultCoverIndex) in defaultCoverList">
+        <a v-bind:href=" defaultCover.url" :key="defaultCoverIndex">
+          <img v-bind:src="defaultCover.icon" class="imgLeft2">{{defaultCover.title}}<img src="../assets/arrow.png" class="imgRight">
+        </a>
       </template>
     </template>
   </div>
@@ -23,8 +29,10 @@
 export default {
   name: 'Cover',
   props: {
-    coverList: JSON,
-    cityId: Number
+    banner: Array,
+    defaultBanner: String,
+    cityCover: JSON,
+    defaultCoverList: Array
   },
   methods: {
     openPage: function (url) {
@@ -35,43 +43,46 @@ export default {
 </script>
 
 <style lang="less">
-.cover {
-  padding: 15px;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.cover img {
-  width: 100%;
+body {
+  background: #f4f6f9;
 }
 
-.cover_theme {
-  font-size: 24px;
-  font-weight: bolder;
-}
-
-.cover_img_top {
-  margin: 15px 0 8px;
-}
-
-.cover_img_other {
-  margin-bottom: 8px;
-}
-
-.cover_title {
-  font-size: 17px;
-  color: #333333;
-  font-weight: bold;
-}
-
-.cover_desc {
-  font-size: 14px;
-  color: #666666;
-}
-
-.line {
+a {
   display: block;
-  height: 1px;
-  background: #eeeeee;
+  font-size: 17px;
+  color: #000000;
+  text-decoration: none;
+  background: #ffffff;
+  line-height: 60px;
   padding: 0 15px;
+}
+
+a:active {
+  background: #f4f6f9;
+  opacity: 0.9;
+}
+
+#cover_banner {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.imgLeft2 {
+  width: 24px;
+  margin-bottom: -5px;
+  margin-right: 10px;
+}
+
+.imgRight {
+  float: right;
+  height: 12px;
+  margin-top: 17px;
 }
 </style>
     

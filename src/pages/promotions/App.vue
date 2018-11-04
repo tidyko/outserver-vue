@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Cover v-bind:cover-list="coverList" v-bind:city-id="this.$route.query.cityid" />
+    <!-- <Cover v-bind:cover-list="coverList" v-bind:city-id="this.$route.query.cityid" /> -->
   </div>
 </template>
 
 <script>
 import Cover from './components/Cover.vue'
-import data from './config/data.js'
+// import data from './config/data.js'
 
 export default {
   name: 'app',
@@ -15,7 +15,7 @@ export default {
   },
   data () {
     return {
-      coverList: data.coverList
+      // coverList: data.coverList
     }
   }
 }
