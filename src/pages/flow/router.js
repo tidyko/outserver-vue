@@ -8,8 +8,8 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [{
     //http://localhost:8080/weixinopen/outserver/html/flow/?cityId=43
-    path: '',
-    name: 'index',
+    path: '/',
+    name: 'Index',
     component: Index
   }],
   // 去掉地址后面的#

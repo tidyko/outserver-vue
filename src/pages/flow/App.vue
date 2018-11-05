@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Cover :cover-list="coverList" :city-id="this.$route.query.cityid" />
+    <Cover :theme="theme" :city-cover="cityCover" />
   </div>
 </template>
 
@@ -15,7 +15,11 @@ export default {
   },
   data () {
     return {
-      coverList: data.coverList
+      theme: data.coverList.theme,
+      cityCover: data.coverList.allCoverList.filter(cityCover => 
+        //箭头函数传递组件作用域
+        cityCover.cityId == this.$route.query.cityid
+      )[0]
     }
   }
 }

@@ -1,15 +1,10 @@
 <template>
   <div id="cover-container">
-    <template v-for="cityCover in coverList.allCoverList">
-      <template v-for="(cover,cityCoverindex) in cityCover.coverList" v-if="cityCover.cityId == cityId">
+    <span class="cover_theme">{{theme}}</span>
+    <template v-if="cityCover !=null && cityCover.coverList.length != 0">
+      <template v-for="(cover,cityCoverindex) in cityCover.coverList">
         <div :key="cityCoverindex" @click="openPage(cover.url)" class="cover">
-          <template v-if="cityCoverindex === 0">
-            <span class="cover_theme">{{coverList.theme}}</span>
-            <img :src="cover.banner" class="cover_img_top">
-          </template>
-          <template v-else>
-            <img :src="cover.banner" class="cover_img_other">
-          </template>
+          <img :src="cover.banner" class="cover_img">
           <span class="cover_title">{{cover.title}}</span><br>
           <span class="cover_desc" v-html="cover.desc"></span>
         </div>
@@ -23,8 +18,8 @@
 export default {
   name: 'Cover',
   props: {
-    coverList: JSON,
-    cityId: Number
+    theme: String,
+    cityCover: Array
   },
   methods: {
     openPage: function (url) {
@@ -39,20 +34,14 @@ export default {
   padding: 15px;
 }
 
-.cover img {
-  width: 100%;
-}
-
 .cover_theme {
   font-size: 24px;
   font-weight: bolder;
+  padding: 15px;
 }
 
-.cover_img_top {
-  margin: 15px 0 8px;
-}
-
-.cover_img_other {
+.cover_img {
+  width: 100%;
   margin-bottom: 8px;
 }
 
