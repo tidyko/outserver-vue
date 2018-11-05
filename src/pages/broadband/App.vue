@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Cover v-bind:banner="banner" v-bind:default-banner="defaultBanner" v-bind:city-cover="cityCover" v-bind:default-cover-list="defaultCoverList" />
+    <Cover :banner="banner" :default-banner="defaultBanner" :city-cover="cityCover" :default-cover-list="defaultCoverList" />
   </div>
 </template>
 

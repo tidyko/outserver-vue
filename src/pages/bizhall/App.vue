@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Cover v-bind:cover-list="coverList" />
+    <Cover :cover-list="coverList" />
   </div>
 </template>
 

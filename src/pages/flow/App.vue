@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Cover v-bind:cover-list="coverList" v-bind:city-id="this.$route.query.cityid" />
+    <Cover :cover-list="coverList" :city-id="this.$route.query.cityid" />
   </div>
 </template>
 

@@ -2,15 +2,15 @@
   <div id="cover-container">
 
     <template v-if="banner !=null && banner.length != 0">
-      <img v-bind:src="banner.banner" id="cover_banner">
+      <img :src="banner.banner" id="cover_banner">
     </template>
     <template v-else>
-      <img v-bind:src="defaultBanner" id="cover_banner">
+      <img :src="defaultBanner" id="cover_banner">
     </template>
 
     <template v-if="cityCover !=null && cityCover.coverList.length != 0">
       <template v-for="(cover,coverIndex) in cityCover.coverList">
-        <a v-bind:href="cover.url" :key="coverIndex">
+        <a :href="cover.url" :key="coverIndex">
           <img v-if="(coverIndex+1) % 3 == 1" src="../assets/a1.png" class="imgLeft2">
           <img v-if="(coverIndex+1) % 3 == 2" src="../assets/a2.png" class="imgLeft2">
           <img v-if="(coverIndex+1) % 3 == 0" src="../assets/a3.png" class="imgLeft2">{{cover.title}}<img src="../assets/arrow.png" class="imgRight">
@@ -19,7 +19,7 @@
     </template>
 
     <template v-for="(commonCover,commonCoverIndex) in commonCoverList">
-      <a v-bind:href=" commonCover.url" :key="commonCoverIndex">
+      <a :href=" commonCover.url" :key="commonCoverIndex">
         <template v-if="cityCover !=null">
           <img v-if="(cityCover.coverList.length+1) % 3 == 1" src="../assets/a1.png" class="imgLeft2">
           <img v-if="(cityCover.coverList.length+1) % 3 == 2" src="../assets/a2.png" class="imgLeft2">

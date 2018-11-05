@@ -5,10 +5,10 @@
         <div :key="cityCoverindex" @click="openPage(cover.url)" class="cover">
           <template v-if="cityCoverindex === 0">
             <span class="cover_theme">{{coverList.theme}}</span>
-            <img v-bind:src="cover.banner" class="cover_img_top">
+            <img :src="cover.banner" class="cover_img_top">
           </template>
           <template v-else>
-            <img v-bind:src="cover.banner" class="cover_img_other">
+            <img :src="cover.banner" class="cover_img_other">
           </template>
           <span class="cover_title">{{cover.title}}</span><br>
           <span class="cover_desc" v-html="cover.desc"></span>
