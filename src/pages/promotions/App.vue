@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <!-- <Cover v-bind:cover-list="coverList" v-bind:city-id="this.$route.query.cityid" /> -->
+    <Cover v-bind:banner="banner" v-bind:default-banner="defaultBanner" v-bind:city-cover="cityCover" v-bind:common-cover-list="commonCoverList" />
   </div>
 </template>
 
 <script>
 import Cover from './components/Cover.vue'
-// import data from './config/data.js'
+import coverData from './config/data.js'
 
 export default {
   name: 'app',
@@ -15,14 +15,19 @@ export default {
   },
   data () {
     return {
-      // coverList: data.coverList
+      banner: coverData.coverList.allBannerList.filter(banner => 
+        //箭头函数传递组件作用域
+        banner.cityId == this.$route.query.cityid
+      )[0],
+      defaultBanner: coverData.coverList.defaultBanner,
+      cityCover: coverData.coverList.allCoverList.filter(cityCover => 
+        cityCover.cityId == this.$route.query.cityid
+      )[0],
+      commonCoverList: coverData.coverList.commonCoverList
     }
   }
 }
 </script>
 
 <style>
-#app {
-  background: #ffffff;
-}
 </style>
