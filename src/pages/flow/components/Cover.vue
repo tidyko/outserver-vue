@@ -25,6 +25,11 @@ export default {
     openPage: function (url) {
       window.location.href= url;
     }
+  },
+  mounted: function () {
+    this.cityCover.coverList.forEach(cover => {
+        return cover.banner = require('../assets/' + cover.banner); 
+    })
   }
 }
 </script>

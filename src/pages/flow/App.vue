@@ -16,8 +16,7 @@ export default {
   data () {
     return {
       theme: data.coverList.theme,
-      cityCover: data.coverList.allCoverList.filter(cityCover => 
-        //箭头函数传递组件作用域
+      cityCover: data.coverList.allCoverList.filter(cityCover =>
         cityCover.cityId == this.$route.query.cityid
       )[0]
     }
