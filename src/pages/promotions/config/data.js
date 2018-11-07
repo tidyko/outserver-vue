@@ -1,14 +1,14 @@
 var coverList = {
     allBannerList: [{
             cityId: 7,
-            banner: require('../assets/cover/7.jpg')
+            banner: 'cover/7.jpg'
         },
         {
             cityId: 45,
-            banner: require('../assets/cover/45.jpg')
+            banner: 'cover/45.jpg'
         }
     ],
-    defaultBanner: require('../assets/cover/all.jpg'),
+    defaultBanner: 'cover/all.jpg',
     allCoverList: [{
         cityId: 6,
         coverList: [{

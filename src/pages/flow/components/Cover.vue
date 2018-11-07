@@ -4,7 +4,7 @@
     <template v-if="cityCover !=null && cityCover.coverList.length != 0">
       <template v-for="(cover,cityCoverindex) in cityCover.coverList">
         <div :key="cityCoverindex" @click="openPage(cover.url)" class="cover">
-          <img :src="cover.banner" class="cover_img">
+          <img :src='requireSrc(cover.banner)' class="cover_img">
           <span class="cover_title">{{cover.title}}</span><br>
           <span class="cover_desc" v-html="cover.desc"></span>
         </div>
@@ -24,13 +24,9 @@ export default {
   methods: {
     openPage: function (url) {
       window.location.href= url;
-    }
-  },
-  mounted: function () {
-    if(this.cityCover != undefined){
-      this.cityCover.coverList.forEach(cover => {
-          return cover.banner = require('../assets/' + cover.banner); 
-      })  
+    },
+    requireSrc: function(src){
+      return require("../assets/" + src)
     }
   }
 }

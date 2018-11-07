@@ -4,10 +4,10 @@
       <div :key="index" @click="openPage(cover.url)" class="cover">
         <template v-if="index === 0">
           <span class="cover_title">{{cover.title}}</span>
-          <img :src="cover.banner" class="cover_img_top">
+          <img :src='requireSrc(cover.banner)' class="cover_img_top">
         </template>
         <template v-else>
-          <img :src="cover.banner" class="cover_img_other">
+          <img :src='requireSrc(cover.banner)' class="cover_img_other">
         </template>
         <span class="cover_desc" v-html="cover.desc"></span>
       </div>
@@ -25,13 +25,9 @@ export default {
   methods: {
     openPage: function (url) {
       window.location.href= url;
-    }
-  },
-  mounted: function () {
-    if(this.coverList != undefined){
-      this.coverList.forEach(cover => {
-          return cover.banner = require('../assets/' + cover.banner); 
-      })
+    },
+    requireSrc: function(src){
+      return require("../assets/" + src)
     }
   }
 }

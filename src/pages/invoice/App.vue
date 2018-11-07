@@ -17,7 +17,6 @@ export default {
     return {
       banner: coverData.coverList.banner,
       cityCover: coverData.coverList.allCoverList.filter(cityCover => 
-        //箭头函数传递组件作用域
         cityCover.cityId == this.$route.query.cityid
       )[0],
       defaultCoverList: coverData.coverList.defaultCoverList

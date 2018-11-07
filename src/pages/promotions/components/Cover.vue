@@ -2,10 +2,10 @@
   <div id="cover-container">
 
     <template v-if="banner !=null && banner.length != 0">
-      <img :src="banner.banner" id="cover_banner">
+      <img :src='requireSrc(banner.banner)' id="cover_banner">
     </template>
     <template v-else>
-      <img :src="defaultBanner" id="cover_banner">
+      <img :src='requireSrc(defaultBanner)' id="cover_banner">
     </template>
 
     <template v-if="cityCover !=null && cityCover.coverList.length != 0">
@@ -45,6 +45,9 @@ export default {
   methods: {
     openPage: function (url) {
       window.location.href= url;
+    },
+    requireSrc: function(src){
+      return require("../assets/" + src)
     }
   }
 }
