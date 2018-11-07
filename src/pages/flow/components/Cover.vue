@@ -27,9 +27,11 @@ export default {
     }
   },
   mounted: function () {
-    this.cityCover.coverList.forEach(cover => {
-        return cover.banner = require('../assets/' + cover.banner); 
-    })
+    if(this.cityCover != undefined){
+      this.cityCover.coverList.forEach(cover => {
+          return cover.banner = require('../assets/' + cover.banner); 
+      })  
+    }
   }
 }
 </script>

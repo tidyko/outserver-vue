@@ -28,9 +28,11 @@ export default {
     }
   },
   mounted: function () {
-    this.coverList.forEach(cover => {
-        return cover.banner = require('../assets/' + cover.banner); 
-    })
+    if(this.coverList != undefined){
+      this.coverList.forEach(cover => {
+          return cover.banner = require('../assets/' + cover.banner); 
+      })
+    }
   }
 }
 </script>
