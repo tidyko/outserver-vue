@@ -59,6 +59,15 @@ module.exports = {
 				publicPath: process.env.BASE_URL,
 				chunkFilename: "[name]/css/[name].[contenthash:8].css"
 			}]);
+
+			config.module
+				.rule('images')
+				.use('image-webpack-loader')
+				.loader('image-webpack-loader')
+				.options({
+					bypassOnDebug: true
+				})
+				.end()
 		}
 	},
 	configureWebpack: config => {
